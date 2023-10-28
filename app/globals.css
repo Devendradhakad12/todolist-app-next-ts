@@ -1,27 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+ 
+.mainDiv {
+  @apply bg-slate-900 h-[100vh] text-white flex justify-center items-center flex-col;
+}
+.loginH1 {
+  @apply font-semibold mb-5 text-[30px];
+}
+.loginDiv {
+  @apply flex flex-col justify-center items-center bg-slate-700 p-5 rounded-lg border-t-4 border-orange-300 sm:w-[500px] w-[90%] shadow-md shadow-slate-200;
+}
+.loginForm {
+  @apply flex flex-col gap-6 sm:w-[60%] w-[80%];
+}
+.formInput {
+  @apply bg-transparent w-[100%] border-b-2 border-orange-300 rounded-sm outline-none text-center py-4 text-[18px];
+}
+.lsBtn {
+  @apply mt-5 bg-orange-300 rounded-sm py-1 text-[25px] font-bold text-slate-700;
+}
+.loginP {
+  @apply my-8;
+}
+.bg {
+  @apply bg-orange-200;
+}
+.box {
+  @apply bg-orange-300 h-[100px] w-[100px] rounded-md flex justify-center items-center flex-col;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.homeTaskCompletedBox {
+  @apply sm:w-[400px] w-[90%] h-[250px]  rounded-xl flex flex-col justify-center items-center;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.progressBarOutside {
+  @apply md:w-[70%] w-[100%] h-[30px] bg-[#22190a3d] rounded-full;
+}
+
+.progressBarInside {
+  @apply h-full flex justify-center items-center text-[18px] font-bold  text-center p-0.5 leading-none rounded-full;
+}
+.homeTaskBox {
+  @apply sm:w-[400px] w-[90%] flex-wrap  h-full pb-[90px]  rounded-xl flex flex-col items-center pt-6;
+}
+
+.btn {
+  @apply bg-orange-800 px-5 py-3 rounded-lg text-[20px] font-semibold text-white transition-all duration-75 hover:scale-105 active:scale-95
+}
+
+.edbtn{
+  @apply  px-5 rounded-lg text-[20px] font-semibold transition-all duration-75 hover:scale-105 active:scale-95
 }
