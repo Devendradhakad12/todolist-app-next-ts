@@ -20,8 +20,10 @@ export const fetchTodo = async ({ userid ,dispatch}: { userid: string,dispatch:a
     else items.taskCompletion = 0;
     items.tasks = res.data?.reverse();
     dispatch(fetchSuccess(items));
+    return true
   } catch (error) {
     console.log(error);
     dispatch(fetchFail());
+    return true
   }
 };

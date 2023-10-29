@@ -1,33 +1,45 @@
 'use client'
 
 import Loading from '@/app/loading'
+import AllTask from '@/components/all-task'
+
 import { fetchTodo } from '@/redux/action/todoActions'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useSession } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { UserDataProps } from '../../page'
 
+export interface UserDataProps {
+  id?: string
+  name?: string | null | undefined,
+  email?: string | null | undefined,
+  image?: string | null | undefined
+}
 const AllTasksPAge = () => {
-    const {data, status } = useSession()
-    const [userData, setUserData] = useState<UserDataProps>()
-    const pathname = usePathname().split("/")[2]
-    const today = new Date().toDateString();
-    const [projectcoutn, setProjectCount] = useState(0);
-    const { taskCompletion, tasks, fetching } = useAppSelector((state) => state.todo)
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-      setUserData(data?.user)
-      if (userData?.id) fetchTodo({userid:userData?.id,dispatch})
-    }, [data])
-    if (status === "loading") return <Loading />
+  const { data, status } = useSession()
+  const [userData, setUserData] = useState<UserDataProps>()
+  const pathname = usePathname().split("/")[2]
+  const today = new Date().toDateString();
+  const { taskCompletion, tasks, fetching } = useAppSelector((state) => state.todo)
+  const dispatch = useAppDispatch()
+
+  function refetch() {
+    setUserData(data?.user)
+    if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
+  }
+
+  useEffect(() => {
+    setUserData(data?.user)
+    if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
+  }, [data])
+  /*    if (status === "loading") return <Loading /> */
   return (
     <>
-          <div className=" h-[100vh] bg">
+      <div className=" h-[100vh] bg">
         {/* Heading div */}
         <div className="md:pl-10 pl-[56px] pt-7">
           <h1 className=" font-bold text-[50px] md:w-[40%]  capitalize m-auto">
-            Your <br /> {pathname} <br /> Projects ({projectcoutn})
+            Your <br /> {pathname} <br /> Projects ({tasks?.length})
           </h1>
         </div>
 
@@ -42,11 +54,11 @@ const AllTasksPAge = () => {
         <div className="p-7 md:w-[50%] w-[100%] flex justify-center m-auto">
           <div className="progressBarOutside flex relative">
             <div
-              className={`progressBarInside bg-orange-500 text-slate-900 `}
+              className={`progressBarInside bg-emerald-900 text-slate-900 `}
               style={{
                 width: `${taskCompletion}%`,
-              
-              }} 
+
+              }}
             ></div>
             {taskCompletion ? (
               <div className="pl-3 absolute top-1 left-[40%] font-bold text-center">
@@ -68,17 +80,15 @@ const AllTasksPAge = () => {
         </div>
 
         {/* Tasks */}
-     {/*    <div className="bg">
+        <div className="bg">
           <AllTask
-            today={today}
-            task={task}
-            loading={loading}
-            error={error}
-            reFetch={reFetch}
-            location={location}
-            setProjectCount={setProjectCount}
+            task={tasks}
+            loading={fetching}
+            location={pathname}
+            userid={userData?.id}
+            reFetch={refetch}
           />
-        </div>  */}
+        </div>
       </div>
     </>
   )

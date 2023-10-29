@@ -15,7 +15,7 @@
   @apply flex flex-col gap-6 sm:w-[60%] w-[80%];
 }
 .formInput {
-  @apply bg-transparent w-[100%] border-b-2 border-slate-300 rounded-sm outline-none text-center py-4 text-[18px];
+  @apply bg-transparent w-[100%] border-b-2 border-orange-300 rounded-sm outline-none text-center py-4 text-[18px];
 }
 .lsBtn {
   @apply mt-5 bg-orange-300 rounded-sm py-1 text-[25px] font-bold text-slate-700;

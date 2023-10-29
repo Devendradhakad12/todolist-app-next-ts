@@ -3,24 +3,32 @@
 import Loading from "@/app/loading";
 import Input from "@/components/ui/input";
 import Textarea from "@/components/ui/textarea";
+ 
+import { fetchTodo } from "@/redux/action/todoActions";
+import { useAppDispatch } from "@/redux/hooks";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { UserDataProps } from "../tasks/all/page";
 
 const AddTaskPage = () => {
     const [loading, setLoading] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const { data, status } = useSession();
+    const [userData, setUserData] = useState<UserDataProps>()
+    const dispatch = useAppDispatch()
     const router = useRouter()
 
     if (status === "loading") return <Loading />
 
-    if(!data?.user?.email) return router.push("/")
+    if (!data?.user?.email) return router.push("/")
+
 
     const hnadleSubmit = async (e: any) => {
+        setUserData(data?.user)
         e.preventDefault();
         setLoading(true);
         try {
@@ -33,8 +41,8 @@ const AddTaskPage = () => {
             toast.success("Task created")
             setTitle("")
             setDescription("")
+            router.refresh()
             return router.push("/tasks/all")
-
         } catch (error) {
             console.log(error);
             toast.error("Something went wrong")
@@ -44,6 +52,10 @@ const AddTaskPage = () => {
 
         }
     };
+    useEffect(() => {
+        setUserData(data?.user)
+        if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
+    }, [data])
 
     return (
         <>

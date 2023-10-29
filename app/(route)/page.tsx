@@ -7,13 +7,9 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import Loading from '../loading'
+import { UserDataProps } from './tasks/all/page'
+ 
 
-export interface UserDataProps {
-  id?: string
-  name?: string | null | undefined,
-  email?: string | null | undefined,
-  image?: string | null | undefined
-}
 
 
 const HomePageLayout = () => {
@@ -27,7 +23,7 @@ const HomePageLayout = () => {
     if (userData?.id) fetchTodo({userid:userData?.id,dispatch})
   }, [data])
 
-  if (status === "loading") return <Loading />
+ /*  if (status === "loading") return <Loading /> */
   return (
 
     <>

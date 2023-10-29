@@ -1,9 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { DateTime } from "next-auth/providers/kakao";
 
 
 export interface InitialStateProps {
-    tasks:{}[];
+    tasks:{
+      title:string,
+      description?:string,
+      creator:string,
+      _id:string,
+      checked:boolean,
+      createdAt:DateTime
+
+    }[];
     fetching: boolean;
     taskCompletion: number
 }
