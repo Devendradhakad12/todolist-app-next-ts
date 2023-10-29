@@ -30,7 +30,7 @@ const AddTaskPage = () => {
    async function reFetch(){
         setUserData(data?.user)
         if (userData?.id) {
-        const bool = await  fetchTodo({ userid: userData?.id, dispatch })
+        const bool = await  fetchTodo({ userid: userData?.id, dispatch }) 
           if(bool) return true
         }
     }
