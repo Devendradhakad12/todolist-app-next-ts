@@ -6,7 +6,7 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import toast from "react-hot-toast";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { ClientSafeProvider, LiteralUnion, getProviders, signIn, signOut, useSession } from "next-auth/react";
 import { BuiltInProviderType, BuiltInProviders } from "next-auth/providers/index";
 import Loading from "@/app/loading";
@@ -16,7 +16,7 @@ const Nav = () => {
     const username = data?.user?.name
     const userimage = data?.user?.image
     const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType>, ClientSafeProvider> | null>(null);
-
+ 
     useEffect(() => {
         const setUpOfProvider = async () => {
             const res = await getProviders()
@@ -31,6 +31,7 @@ const Nav = () => {
         return redirect("/")
     };
     const [toggle, setToggle] = useState(false);
+
 
     return (
         <div className=" bg-slate-900 text-white flex justify-between">

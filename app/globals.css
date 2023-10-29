@@ -9,7 +9,7 @@
   @apply font-semibold text-[30px];
 }
 .loginDiv {
-  @apply flex flex-col justify-center items-center bg-slate-700 p-5 rounded-lg border-t-4 border-orange-300 sm:w-[500px] w-[90%] shadow-2xl shadow-slate-900;
+  @apply flex flex-col justify-center items-center bg-slate-700 p-5 rounded-lg border-t-4 border-slate-300 sm:w-[500px] w-[90%] shadow-2xl shadow-slate-900;
 }
 .loginForm {
   @apply flex flex-col gap-6 sm:w-[60%] w-[80%];
@@ -24,7 +24,7 @@
   @apply my-8;
 }
 .bg {
-  @apply bg-orange-200;
+  @apply bg-slate-200;
 }
 .box {
   @apply bg-orange-300 h-[100px] w-[100px] rounded-md flex justify-center items-center flex-col;
@@ -46,7 +46,7 @@
 }
 
 .btn {
-  @apply bg-orange-800 px-5 py-3 rounded-lg text-[20px] font-semibold text-white transition-all duration-75 hover:scale-105 active:scale-95
+  @apply bg-sky-800 px-5 py-3 rounded-lg text-[20px] font-semibold text-white transition-all duration-75 hover:scale-105 active:scale-95
 }
 
 .edbtn{
