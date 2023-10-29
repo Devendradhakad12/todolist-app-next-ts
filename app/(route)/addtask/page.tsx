@@ -18,7 +18,7 @@ const AddTaskPage = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const { data, status } = useSession();
-    const [userData, setUserData] = useState<UserDataProps>()
+    const [userData, setUserData] = useState<UserDataProps>() 
     const dispatch = useAppDispatch()
     const router = useRouter()
 
@@ -26,6 +26,14 @@ const AddTaskPage = () => {
 
     if (!data?.user?.email) return router.push("/")
 
+
+   async function reFetch(){
+        setUserData(data?.user)
+        if (userData?.id) {
+        const bool = await  fetchTodo({ userid: userData?.id, dispatch })
+          if(bool) return true
+        }
+    }
 
     const hnadleSubmit = async (e: any) => {
         setUserData(data?.user)
@@ -42,7 +50,8 @@ const AddTaskPage = () => {
             setTitle("")
             setDescription("")
             router.refresh()
-            return router.push("/tasks/all")
+            const bool = await reFetch()
+            if(bool) return router.push("/tasks/all")
         } catch (error) {
             console.log(error);
             toast.error("Something went wrong")
