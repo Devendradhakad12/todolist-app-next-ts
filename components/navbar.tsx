@@ -9,8 +9,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ClientSafeProvider, LiteralUnion, getProviders, signIn, signOut, useSession } from "next-auth/react";
 import { BuiltInProviderType, BuiltInProviders } from "next-auth/providers/index";
+import Loading from "@/app/loading";
 const Nav = () => {
-    const { data } = useSession()
+    const { data} = useSession()
     const email = data?.user?.email
     const username = data?.user?.name
     const userimage = data?.user?.image
@@ -36,14 +37,13 @@ const Nav = () => {
             <div className="px-5 py-3 flex gap-4 sm:ml-[30px]">
                 <div>
                     <img
-                        src={userimage? userimage : "https://i.pinimg.com/736x/86/63/78/866378ef5afbe8121b2bcd57aa4fb061.jpg"}
+                        src={userimage ? userimage : "https://i.pinimg.com/736x/86/63/78/866378ef5afbe8121b2bcd57aa4fb061.jpg"}
                         alt="img"
                         className=" w-[50px] h-[50px] object-cover rounded-full "
                     />
                 </div>
-                <div className="leading-5">
-                    <p className=" opacity-60">{email}</p>
-                    <h2 className="text-[25px] font-bold capitalize">
+                <div className="flex justify-center items-center">
+                    <h2 className="text-[25px] font-bold capitalize leading-5 gap-7">
                         {username ? username : "Login First"}
                     </h2>
                 </div>
@@ -105,15 +105,15 @@ const Nav = () => {
                             </li>
                             {!email ? (
                                 <li className=" mx-3 text-lg leading-9">
-                                    <Link
-                                        href={"/login"}
+                                    <button
                                         className=" cursor-pointer"
                                         onClick={() => {
                                             setToggle(!toggle);
+                                            signIn(providers?.google.id)
                                         }}
                                     >
                                         Login
-                                    </Link>
+                                    </button>
                                 </li>
                             ) : (
                                 <>
