@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const { title, description, user } = await req.json();
-  console.log(user)
+  
   try {
     if ( user === "undefined" || !user || user?.id === "undefined") return new NextResponse("Unauthorized", { status: 401 });
     await ConnectToDB();

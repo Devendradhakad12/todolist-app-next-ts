@@ -18,6 +18,8 @@ const AddTaskPage = () => {
 
     if (status === "loading") return <Loading />
 
+    if(!data?.user?.email) return router.push("/")
+
     const hnadleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
@@ -31,7 +33,7 @@ const AddTaskPage = () => {
             toast.success("Task created")
             setTitle("")
             setDescription("")
-            return router.push("/task/all")
+            return router.push("/tasks/all")
 
         } catch (error) {
             console.log(error);
