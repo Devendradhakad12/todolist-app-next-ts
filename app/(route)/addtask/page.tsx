@@ -22,10 +22,14 @@ const AddTaskPage = () => {
     const dispatch = useAppDispatch()
     const router = useRouter()
 
-    if (status === "loading") return <Loading />
-
-    if (!data?.user?.email) return router.push("/")
-
+   
+    
+    useEffect(() => {
+        if (status === "loading") return;
+        if (!data?.user?.email) return router.push("/")
+        setUserData(data?.user)
+        if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
+    },[data,status,router,dispatch,userData?.id])
 
    async function reFetch(){
         setUserData(data?.user)
@@ -61,10 +65,6 @@ const AddTaskPage = () => {
 
         }
     };
-    useEffect(() => {
-        setUserData(data?.user)
-        if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
-    }, [data])
 
     return (
         <>
