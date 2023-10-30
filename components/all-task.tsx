@@ -119,7 +119,7 @@ const AllTask = ({ task, loading, location, userid, reFetch }: AllTaskProps) => 
                                     {/* task update and delete buttons */}
                                     <div className="absolute bottom-10 flex gap-4">
                                         <Link
-                                            href={`/edittask/${t._id}`}
+                                            href={`/edit/${t._id}`}
                                             className="bg-blue-600 text-white edbtn"
                                         >
                                             Edit
