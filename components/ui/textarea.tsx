@@ -22,4 +22,6 @@ const Textarea =  React.forwardRef<HTMLTextAreaElement , TextareaProps>(({placeh
  
 ))
 
+Textarea.displayName = "Textarea"
+
 export default Textarea

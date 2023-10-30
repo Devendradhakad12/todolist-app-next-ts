@@ -22,4 +22,6 @@ const Input = React.forwardRef<HTMLInputElement,InputProps> (({type,placeholder,
 />
 ))
 
+Input.displayName = "Input"
+
 export default Input
