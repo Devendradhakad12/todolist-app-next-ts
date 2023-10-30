@@ -24,19 +24,22 @@ const EditTask = ({ params }: { params: { taskid: string } }) => {
     const [loading, setLoading] = useState(false)
     const [currentTask, setCurrentTask] = useState<InitialStateProps["tasks"]>([])
    
-   // console.log(currentTask)
+   
     useEffect(() => {
         if (!data?.user) return router.push("/")
         setUserData(data?.user)
         setCurrentTask(tasks.filter((t) => {
             return t._id === params.taskid;
-        }))
-        if (currentTask[0]?.title !== undefined && currentTask[0]?.title !== null){
-            setTitle(currentTask[0]?.title)
-            setDescription(currentTask[0]?.description!);
-        }
-           
+        })) 
     }, [data, status, router, tasks, dispatch, userData?.id,params.taskid]);
+
+    
+    useEffect(() => {
+        if (currentTask[0]) {
+            setTitle(currentTask[0].title || '');
+            setDescription(currentTask[0].description || '');
+        }
+    }, [currentTask]);
 
     async function reFetch() {
         setUserData(data?.user)
