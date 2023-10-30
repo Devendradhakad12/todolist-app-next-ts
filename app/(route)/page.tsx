@@ -21,7 +21,7 @@ const HomePageLayout = () => {
   useEffect(() => {
     setUserData(data?.user)
     if (userData?.id) fetchTodo({userid:userData?.id,dispatch})
-  }, [data])
+  }, [data,dispatch,userData?.id])
 
  /*  if (status === "loading") return <Loading /> */
   return (
