@@ -74,26 +74,26 @@ const AllTask = ({ task, loading, location, userid, reFetch }: AllTaskProps) => 
     };
 
     // handle search
-    const [searchInp, setSearchInp] = useState("");
     const handleSearch = (e: string) => {
         let regexp = new RegExp(e, "i");
         let searcht = task?.filter((t) => {
             return regexp.test(t?.title!) || regexp.test(t?.description!);
         });
+      setTimeout(()=>{
         setAllTasks(searcht);
+      },1000)
     };
-    useEffect(() => {
-        handleSearch(searchInp);
-    }, [searchInp]);
+
+ 
 
     return (
         <>
             <div className="pb-10 flex justify-center ">
                 <input
                     type="text"
-                    value={searchInp}
+                  //  value={searchInp}
                     onChange={(e) => {
-                        setSearchInp(e.target.value);
+                        handleSearch(e.target.value)
                     }}
                     className="px-4 py-1 rounded-lg outline-none "
                     placeholder="Search Task.."
