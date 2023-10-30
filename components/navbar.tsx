@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-
+import usericon from '../public/user-icon.png'
 import toast from "react-hot-toast";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ import { ClientSafeProvider, LiteralUnion, getProviders, signIn, signOut, useSes
 import { BuiltInProviderType, BuiltInProviders } from "next-auth/providers/index";
 import Loading from "@/app/loading";
 import Image from "next/image";
+
 const Nav = () => {
     const { data} = useSession()
     const email = data?.user?.email
@@ -33,16 +34,18 @@ const Nav = () => {
     };
     const [toggle, setToggle] = useState(false);
 
-
+ 
     return (
         <div className=" bg-slate-900 text-white flex justify-between">
             <div className="px-5 py-3 flex gap-4 sm:ml-[30px]">
                 <div>
-                    <Image
-                        src={userimage ? userimage : "https://i.pinimg.com/736x/86/63/78/866378ef5afbe8121b2bcd57aa4fb061.jpg"}
+                {    <Image
+                        width={50}
+                        height={50}
+                        src={userimage ? userimage :  usericon}
                         alt="img"
                         className=" w-[50px] h-[50px] object-cover rounded-full "
-                    />
+                    />}
                 </div>
                 <div className="flex justify-center items-center">
                     <h2 className="text-[25px] font-bold capitalize leading-5 gap-7">
