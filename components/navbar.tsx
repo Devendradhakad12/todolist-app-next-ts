@@ -10,6 +10,7 @@ import { redirect, useRouter } from "next/navigation";
 import { ClientSafeProvider, LiteralUnion, getProviders, signIn, signOut, useSession } from "next-auth/react";
 import { BuiltInProviderType, BuiltInProviders } from "next-auth/providers/index";
 import Loading from "@/app/loading";
+import Image from "next/image";
 const Nav = () => {
     const { data} = useSession()
     const email = data?.user?.email
@@ -37,7 +38,7 @@ const Nav = () => {
         <div className=" bg-slate-900 text-white flex justify-between">
             <div className="px-5 py-3 flex gap-4 sm:ml-[30px]">
                 <div>
-                    <img
+                    <Image
                         src={userimage ? userimage : "https://i.pinimg.com/736x/86/63/78/866378ef5afbe8121b2bcd57aa4fb061.jpg"}
                         alt="img"
                         className=" w-[50px] h-[50px] object-cover rounded-full "
