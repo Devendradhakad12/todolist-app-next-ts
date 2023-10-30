@@ -23,7 +23,7 @@ const PendingTaskPage = () => {
     useEffect(()=>{
         setUserData(data?.user)
         if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
-    },[data])
+    },[data,dispatch,userData?.id])
 
     useEffect(()=>{
         if(tasks.length >0){
@@ -73,7 +73,7 @@ const PendingTaskPage = () => {
       {/* Pednding or completed task heading div */}
       <div className=" flex md:justify-center items-center gap-10 justify-between px-10 py-3">
         <Link className="md:hidden capitalize font-bold text-[22px]" href="/">
-          <FontAwesomeIcon icon={faArrowLeftLong} /> Pending Task's
+          <FontAwesomeIcon icon={faArrowLeftLong} /> Pending Task &apos; s
         </Link>
         <Link href="/tasks/all">See All</Link>
       </div>

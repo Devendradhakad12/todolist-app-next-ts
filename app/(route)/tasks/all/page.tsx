@@ -31,7 +31,7 @@ const AllTasksPAge = () => {
   useEffect(() => {
     setUserData(data?.user)
     if (userData?.id) fetchTodo({ userid: userData?.id, dispatch })
-  }, [data])
+  }, [data,dispatch,userData?.id])
   /*    if (status === "loading") return <Loading /> */
   return (
     <>
@@ -75,7 +75,7 @@ const AllTasksPAge = () => {
         {/* Pednding or completed task heading div */}
         <div className=" flex md:justify-center items-center gap-10 justify-center px-10 py-3">
           <h2 className="md:hidden capitalize font-bold text-[22px]">
-            {pathname} Task's
+            {pathname} Task &apos; s
           </h2>
         </div>
 

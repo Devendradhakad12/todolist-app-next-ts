@@ -40,7 +40,7 @@ const AllTask = ({ task, loading, location, userid, reFetch }: AllTaskProps) => 
     const handleChange = async ({ id, check }: { id: string, check: boolean }) => {
         setCurrentTask(id);
         try {
-             await axios.patch(`/api/task/${id}/${userid}`, {
+            await axios.patch(`/api/task/${id}/${userid}`, {
                 checked: !check,
             });
             setReload(true);
@@ -83,9 +83,7 @@ const AllTask = ({ task, loading, location, userid, reFetch }: AllTaskProps) => 
         setAllTasks(searcht);
     };
     useEffect(() => {
-        setTimeout(() => {
-            handleSearch(searchInp);
-        }, 1500)
+        handleSearch(searchInp);
     }, [searchInp]);
 
     return (
